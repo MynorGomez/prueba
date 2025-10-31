@@ -82,7 +82,7 @@
     </div>
 </div>
 
-<!-- 🧾 MODAL EMPLEADO -->
+<!-- 🧾 MODAL -->
 <div class="modal fade" id="modalEmpleado" tabindex="-1" data-bs-backdrop="static">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
@@ -96,7 +96,7 @@
                     <input type="hidden" name="id_empleado" id="id_empleado">
 
                     <div class="row g-3">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label class="form-label fw-bold">Código</label>
                             <input type="text" name="txt_codigo" id="txt_codigo" class="form-control" placeholder="Código" required>
                         </div>
@@ -175,7 +175,7 @@
 <script>
 const modalEmpleado = new bootstrap.Modal(document.getElementById('modalEmpleado'));
 
-// 🟢 Nuevo empleado
+// Nuevo
 function nuevoEmpleado(){
     $("#tituloModal").text("Nuevo Empleado");
     $("#formEmpleado")[0].reset();
@@ -191,7 +191,7 @@ function nuevoEmpleado(){
     modalEmpleado.show();
 }
 
-// 🟡 Editar empleado
+// Editar
 function editarEmpleado(fila){
     $("#tituloModal").text("Editar Empleado");
     $("#id_empleado").val(fila.dataset.id);

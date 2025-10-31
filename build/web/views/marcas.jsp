@@ -5,7 +5,7 @@
 
 <!DOCTYPE html>
 <html lang="es">
-<head>
+    <head>
     <meta charset="UTF-8">
     <title>Mantenimiento de Marcas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -16,9 +16,8 @@
         .main-content { margin-left: 250px; padding: 25px; }
         tr:hover { background-color: #eef6ff; cursor: pointer; }
     </style>
-</head>
-
-<body>
+    </head>
+    <body>
 <div class="main-content">
     <div class="card shadow-lg">
         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
@@ -26,25 +25,25 @@
             <button class="btn btn-success" onclick="nuevaMarca()">
                 <i class="bi bi-plus-circle"></i> Nueva Marca
             </button>
-        </div>
+                            </div>
 
-        <div class="card-body">
+                            <div class="card-body">
             <div id="alertContainer"></div>
 
             <div class="table-responsive" id="tablaContainer">
                 <table class="table table-hover table-striped text-center align-middle">
                     <thead class="table-dark">
-                        <tr>
-                            <th>ID</th>
-                            <th>Marca</th>
-                        </tr>
-                    </thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Marca</th>
+                                        </tr>
+                                    </thead>
                     <tbody id="tablaMarcas">
-                        <%
-    Marca marca = new Marca();
+                                        <%
+                                            Marca marca = new Marca();
     List<Marca> marcas = marca.leer();
     for (Marca marcaItem : marcas) {
-%>
+                                        %>
 <tr class="fila-marca"
     data-id="<%= marcaItem.getId_marca() %>"
     data-nombre="<%= marcaItem.getMarca() %>">
@@ -53,14 +52,14 @@
 </tr>
 <% } %>
 
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<!-- 🧾 MODAL FORMULARIO -->
+<!-- ?? MODAL FORMULARIO -->
 <div class="modal fade" id="modalMarca" tabindex="-1" data-bs-backdrop="static">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -81,27 +80,27 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" data-accion="Agregar" id="btnGuardar">💾 Guardar</button>
-                    <button type="submit" class="btn btn-warning d-none" data-accion="Actualizar" id="btnActualizar">🔄 Actualizar</button>
-                    <button type="submit" class="btn btn-danger d-none" data-accion="Eliminar" id="btnEliminar">🗑️ Eliminar</button>
+                    <button type="submit" class="btn btn-primary" data-accion="Agregar" id="btnGuardar">?? Guardar</button>
+                    <button type="submit" class="btn btn-warning d-none" data-accion="Actualizar" id="btnActualizar">?? Actualizar</button>
+                    <button type="submit" class="btn btn-danger d-none" data-accion="Eliminar" id="btnEliminar">??? Eliminar</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </form>
         </div>
     </div>
-</div>
+            </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
+        <script>
 const modalMarca = new bootstrap.Modal(document.getElementById('modalMarca'));
-
-// ✅ Detectar qué acción se envía
+                // Manejar el clic en una fila de la tabla
+// ? Detectar qu� acci�n se env�a
 $("#formMarca button[type='submit']").on("click", function() {
     const accion = $(this).data("accion");
     $("#accion").val(accion);
-});
+                });
 
-// 🟢 Nueva Marca
+// ?? Nueva Marca
 function nuevaMarca() {
     $("#tituloModal").text("Nueva Marca");
     $("#accion").val("Agregar");
@@ -111,7 +110,7 @@ function nuevaMarca() {
     modalMarca.show();
 }
 
-// ✏️ Clic en fila → editar
+// ?? Clic en fila ? editar
 $(document).on("click", ".fila-marca", function() {
     const id = $(this).data("id");
     const nombre = $(this).data("nombre");
@@ -123,16 +122,16 @@ $(document).on("click", ".fila-marca", function() {
     $("#btnGuardar").addClass("d-none");
     $("#btnActualizar, #btnEliminar").removeClass("d-none");
     modalMarca.show();
-});
+            });
 
-// 💾 Guardar, Actualizar o Eliminar (AJAX)
+// ?? Guardar, Actualizar o Eliminar (AJAX)
 $("#formMarca").on("submit", function(e) {
     e.preventDefault();
     const accion = $("#accion").val();
     const marca = $("#txt_marca").val().trim();
 
     if (marca === "" && accion !== "Eliminar") {
-        mostrarAlerta("⚠️ El nombre de la marca no puede estar vacío.", "warning");
+        mostrarAlerta("?? El nombre de la marca no puede estar vac�o.", "warning");
         return;
     }
 
@@ -143,20 +142,20 @@ $("#formMarca").on("submit", function(e) {
         success: function() {
             modalMarca.hide();
             recargarTabla();
-            mostrarAlerta(`✅ Marca ${accion.toLowerCase()} correctamente.`, "success");
+            mostrarAlerta(`? Marca ${accion.toLowerCase()} correctamente.`, "success");
         },
         error: function() {
-            mostrarAlerta("❌ Error al procesar la solicitud.", "danger");
+            mostrarAlerta("? Error al procesar la solicitud.", "danger");
         }
     });
 });
 
-// 🔄 Recargar tabla después de cambios
+// ?? Recargar tabla despu�s de cambios
 function recargarTabla() {
     $("#tablaMarcas").load(location.href + " #tablaMarcas>*", "");
 }
 
-// ⚠️ Mostrar alerta (Bootstrap)
+// ?? Mostrar alerta (Bootstrap)
 function mostrarAlerta(mensaje, tipo) {
     const alerta = `
         <div class="alert alert-${tipo} alert-dismissible fade show mt-3" role="alert">
@@ -166,6 +165,6 @@ function mostrarAlerta(mensaje, tipo) {
     $("#alertContainer").html(alerta);
     setTimeout(() => { $(".alert").alert('close'); }, 4000);
 }
-</script>
-</body>
+        </script>
+    </body>
 </html>
