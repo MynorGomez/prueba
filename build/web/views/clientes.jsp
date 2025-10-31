@@ -144,7 +144,7 @@
 <script>
 const modalCliente = new bootstrap.Modal(document.getElementById('modalCliente'));
 
-// Nuevo cliente
+// Nuevo
 function nuevoCliente(){
     $("#tituloModal").text("Nuevo Cliente");
     $("#formCliente")[0].reset();
@@ -155,7 +155,7 @@ function nuevoCliente(){
     modalCliente.show();
 }
 
-// Editar cliente
+// Editar
 function editarCliente(fila){
     $("#tituloModal").text("Editar Cliente");
     $("#id_cliente").val(fila.dataset.id);

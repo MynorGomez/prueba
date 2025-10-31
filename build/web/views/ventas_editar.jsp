@@ -118,8 +118,10 @@
                             while (rsd.next()) {
                                 total += rsd.getDouble("subtotal");
                         %>
+                        
                         <tr>
                             <td>
+                                
                                 <select class="form-select form-select-sm" name="idProducto" onchange="actualizarPrecio(this)" required>
                                     <%
                                         int idProdSel = rsd.getInt("id_producto");
@@ -140,6 +142,7 @@
                                     %>
                                 </select>
                             </td>
+                            
                             <td><input type="number" name="precio" value="<%= rsd.getDouble("precio_venta") %>" class="form-control form-control-sm precio" readonly></td>
                             <td>
                                 <input type="number" name="cantidad" value="<%= rsd.getInt("cantidad") %>"

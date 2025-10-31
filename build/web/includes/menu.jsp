@@ -12,8 +12,8 @@
     for (Menu item : listaMenus) {
         mapa.computeIfAbsent(item.getId_padre(), k -> new ArrayList<>()).add(item);
     }
-
-    String context = request.getContextPath();
+    // Detecta la página actual
+    String context = request.getContextPath(); // Ej: /Sistema
     String uri = request.getRequestURI();
 
     // 🧠 Detectar si el nombre es femenino
@@ -105,7 +105,7 @@ void renderMenu(List<Menu> menus, Map<Integer, List<Menu>> mapa,
 <div class="main-content">
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
@@ -158,7 +158,7 @@ a, a:hover, a:focus, a:active {
 }
 .nav-link {
     display: block;
-    padding: 6px 10px;
+    padding: 12px 20px;
     border-radius: 6px;
     color: #e9ecef !important;
     transition: all 0.2s ease;
@@ -172,7 +172,7 @@ a, a:hover, a:focus, a:active {
     color: #fff !important;
 }
 
-/* Activo padre */
+
 .active-parent {
     background-color: #343a40 !important;
     border-radius: 6px;
@@ -186,19 +186,19 @@ a, a:hover, a:focus, a:active {
     color: #ffd166 !important;
 }
 
-/* Botones */
+/* --- Contenido principal --- */
 .toggle-btn {
     background: transparent;
     border: none;
     cursor: pointer;
-    padding: 2px;
+    padding: 30px;
     color: #e9ecef;
 }
 .toggle-btn:hover { color: #fff; }
 .toggle-btn i { transition: transform 0.3s ease; }
 .rotate i { transform: rotate(180deg); }
 
-/* Scroll */
+/* --- Header superior opcional --- */
 .sidebar::-webkit-scrollbar { width: 6px; }
 .sidebar::-webkit-scrollbar-thumb { background-color: #6c757d; border-radius: 10px; }
 
